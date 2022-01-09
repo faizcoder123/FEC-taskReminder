@@ -4,45 +4,47 @@ import { Link } from "react-router-dom";
 class Signup extends Component {
   render() {
     return (      
-    <>
-    <body style = {{ backgroundImage: `url(${require("../login-image.png")})`, backgroundRepeat: 'no-repeat'}}>
-    <div class="container" >
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="signup-form">
-                <form action="" class="mt-5 border p-4 bg-light shadow" >
-                    <h4 class="mb-5 text-secondary">Create Your Account</h4>
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label>Name<span class="text-danger">*</span></label>
-                            <input type="text" name="fname" class="form-control" placeholder="Enter Name"/>
-                        </div>
+   <section class="vh-100">
+      <div class="container-fluid" style={{"height": "calc(100% - 73px)"}}>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+              alt="Sample image"></img>
+          </div>
+          <div class="col-md-6 col-lg-2 col-xl-3 offset-xl-1">
+            <form>
+              <div class="form-outline mb-4">
+                <input type="email" id="form3Example3" class="form-control form-control-lg"
+                  placeholder="Enter your name" />
+              </div>
 
-                        <div class="mb-3 col-md-6">
-                            <label>E-Mail<span class="text-danger">*</span></label>
-                            <input type="text" name="Lname" class="form-control" placeholder="Enter e-mail"/>
-                        </div>
+              <div class="form-outline mb-4">
+                <input type="email" id="form3Example3" class="form-control form-control-lg"
+                  placeholder="Enter your email address" />
+              </div>
+    
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example4" class="form-control form-control-lg"
+                  placeholder="Enter your password" />
+              </div>
 
-                        <div class="mb-3 col-md-12">
-                            <label>Password<span class="text-danger">*</span></label>
-                            <input type="password" name="password" class="form-control" placeholder="Enter Password"/>
-                        </div>
-                        <div class="mb-3 col-md-12">
-                            <label>Confirm Password<span class="text-danger">*</span></label>
-                            <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password"/>
-                        </div>
-                        <div class="col-md-12">
-                           <button class="btn btn-primary float-end">Sign Up</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example4" class="form-control form-control-lg"
+                  placeholder="Confirm password" />
+              </div>
+    
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button type="button" class="btn btn-primary btn-lg"
+                  style= {{paddingLeft: "2.5rem", paddingRight: "2.5rem"}}>Login</button>
+                <p class="text-white small fw-bold mt-2 pt-1 mb-0">If you already have an account, Please <Link to="/login"
+                    class="text-warning">Sign in</Link></p>
+              </div>
+    
+            </form>
+          </div>
         </div>
-    </div>
-   </div>
-   </body>
-   <p class="text-center mt-3 text-secondary">If you already have an account, Please <Link class="col-md-12" to="/login"> Login </Link></p>
-</>
+      </div>
+    </section>
     );
   }
 }

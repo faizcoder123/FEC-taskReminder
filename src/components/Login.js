@@ -14,60 +14,65 @@ class Login extends Component {
       });
     }
     const Authenticated = () => {
-      fetch('http://localhost:7000/taskReminder/user',{
-        method: 'GET',
-        headers: {
-            'Content-type': 'application/json',
-        },
-         body: JSON.stringify({
-            username: this.state.email,
-            password: this.state.password
-        })})
-      .then((response) => {if(response.ok) {
-        return response.json()
-      }
-      else{
-        throw new Error('Something went wrong');
-      }}).then(userResponse => {
-          console.log(userResponse)
-          localStorage.setItem('user', JSON.stringify(userResponse));
-          window.location.href = "/dashboard";
-      }).catch( () => {
-        this.setState({
-          userInvalid : true
-        })
-       }
-      )
-      this.state.email= ""
-      this.state.password= ""
+      let h = new Headers();
+      h.append('Content-Type', 'application/json');
+      h.append('Authorization', 'Basic ' + window.btoa(this.state.email + ":" +this.state.password));
+      let req = new Request('http://localhost:7000/taskReminder/user', {
+          method: 'GET',
+          headers: h
+      });
+      fetch(req)
+      .then((response)=>{
+          if(response.ok){
+             // redirect to page
+          }else if(response.status == 401){
+            alert('Wrong Password or Username Invalid');
+          }
+          else{
+            alert('500: Something Went Wrong');
+          }
+      });
+      this.setState({
+        email: '',
+        password: ''
+      });
     };
     return (
-      <>
-      <div class="container">
-      <div class="row">
-          <div class="col-md-6 offset-md-3 d-flex p-2">
-            <div class="mt-5 border p-3 bg-light shadow ">
-                <h4 class="mb-5 text-secondary">Login Your Account</h4>
-                <h4 class="text-danger col-md-10">{this.state.userInvalid ? "Invalid Input Or User Not Found": ""}</h4>
-                <div class="row">  
-                    <div class="mb-3 col-md-7">
-                        <label>E-mail<span class="text-danger">*</span></label>
-                        <input type="text" name="email" value = {this.state.email} class="form-control" placeholder="Enter e-mail" onChange={updateInputValue} />
-                    </div>
-                    <div class="mb-3 col-md-7">
-                        <label>Password<span class="text-danger">*</span></label>
-                        <input type="password" name="password" value = {this.state.password} class="form-control" placeholder="Enter Password" onChange={updateInputValue}/>
-                    </div>
-                    <div class="col-md-12">
-                        <button class="btn btn-primary " onClick={()=>{Authenticated()}}>Log In</button>
-                    </div>
-                    <p class="text-center mt-3 text-secondary">If you don't have an account, Please <Link class="col-md-12" to="/"> Signup </Link></p>
-                </div>
-            </div>
+      <section class="vh-100">
+      <div class="container-fluid" style={{"height": "calc(100% - 73px)"}}>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-9 col-lg-6 col-xl-5">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+              alt="Sample image"></img>
           </div>
-       </div>
+          <div class="col-md-6 col-lg-2 col-xl-3 offset-xl-1">
+            <form>
+              <div class="form-outline mb-4">
+                <input type="email" name="email" onChange ={updateInputValue} value= {this.state.email} class="form-control form-control-lg"
+                  placeholder="Enter your email address" />
+              </div>
+    
+              <div class="form-outline mb-3">
+                <input type="password" name="password" value= {this.state.password} onChange ={updateInputValue} class="form-control form-control-lg"
+                  placeholder="Enter your password"/>
+              </div>
+    
+              <div class="justify-content-between align-items-center text-white">
+                <Link to="#!" class="text-warning">Forgot password?</Link>
+              </div>
+    
+              <div class="text-center text-lg-start mt-4 pt-2">
+                <button type="button" class="btn btn-primary btn-lg" onClick={Authenticated}
+                  style= {{paddingLeft: "2.5rem", paddingRight: "2.5rem"}}>Login</button>
+                <p class="text-white small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link to="/"
+                    class="text-warning">Sign up</Link></p>
+              </div>
+    
+            </form>
+          </div>
+        </div>
       </div>
-    </>
+    </section>
     );
   }
 }
