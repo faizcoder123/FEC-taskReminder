@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
+import { checkAuth } from "../helper/AuthenticateUtil";
 class Signup extends Component {
    state = {
     email: "",
@@ -57,18 +58,7 @@ class Signup extends Component {
                                   "password": this.state.password, "phoneNo": this.state.phone
                                 })
         });
-        fetch(req)
-        .then((response)=>{
-            if(response.ok){
-              // redirect to page
-            }
-            else if(response.status === 500){
-              alert('Something Went Wrong');
-            }
-            else{
-            alert('Please provide the correct details');
-            }
-        });
+        checkAuth(req)
       }
       this.setState({
         email: "",

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { checkAuth } from "../helper/AuthenticateUtil";
 
 class Login extends Component {
   state = {
@@ -7,12 +8,14 @@ class Login extends Component {
     password: ""
   }
   render() {
+   
     const updateInputValue = (e) => {
       this.setState({
         [e.target.name] : e.target.value
       });
     }
     const Authenticated = () => {
+      
       let h = new Headers();
       h.append('Content-Type', 'application/json');
       h.append('Authorization', 'Basic ' + window.btoa(this.state.email + ":" +this.state.password));
@@ -20,17 +23,7 @@ class Login extends Component {
           method: 'GET',
           headers: h
       });
-      fetch(req)
-      .then((response)=>{
-          if(response.ok){
-             // redirect to page
-          }else if(response.status == 401){
-            alert('Wrong Password or Username Invalid');
-          }
-          else{
-            alert('500: Something Went Wrong');
-          }
-      });
+      checkAuth(req)
       this.setState({
         email: '',
         password: ''
