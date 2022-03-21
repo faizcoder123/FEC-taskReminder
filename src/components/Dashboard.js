@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import  { useState, useEffect, useRef } from 'react';
 import NotFound from "./NotFound"
+import {Header} from "./Header"
+import {SearchBar} from "./SearchBar"
+import {Filters} from './Filters'
+import {Tasks} from './Tasks'
 
 function Dashboard(props) {
     const [input, setInput] = useState('')
@@ -18,19 +22,13 @@ function Dashboard(props) {
         );
     }
     return (
-        <form className='todo-form' onSubmit={handleSubmit}>
-            <div>
-                <input
-                placeholder='Add a todo'
-                value={input}
-                name='text'
-                className='todo-input'
-            />
-            <button  className='todo-button'>
-            Add todo
-            </button>
-            </div>
-        </form>
+        <div className="dashBoard">
+        <Header/>
+        <SearchBar/>
+        <Filters/>
+        <Tasks/>
+        </div>
+        
     );
  }
 

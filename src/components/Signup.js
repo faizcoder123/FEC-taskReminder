@@ -58,7 +58,7 @@ class Signup extends Component {
                                   "password": this.state.password, "phoneNo": this.state.phone
                                 })
         });
-        checkAuth(req)
+        checkAuth(req, this.state.password)
       }
       this.setState({
         email: "",

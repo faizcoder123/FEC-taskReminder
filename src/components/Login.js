@@ -23,7 +23,7 @@ class Login extends Component {
           method: 'GET',
           headers: h
       });
-      checkAuth(req)
+      checkAuth(req, this.state.password)
       this.setState({
         email: '',
         password: ''

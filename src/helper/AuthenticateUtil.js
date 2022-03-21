@@ -1,7 +1,12 @@
-export function checkAuth(req) {
+export function checkAuth(req, password) {
     fetch(req)
     .then(data=>{
         if(data.ok){
+          getJsonResonse(data).then(res=>{
+            res = JSON.parse(res)
+            sessionStorage.setItem("email", res.email);
+          })
+          sessionStorage.setItem("password", password);
           sessionStorage.setItem("AuthenticationState", true);
           window.location = "http://localhost:3000/dashboard"
         }
@@ -10,10 +15,11 @@ export function checkAuth(req) {
         }
         else if(data.status === 401){
             alert('Unauthorized');
-          }
+        }
         else{
-          const res = getJsonResonse(data).then(resArg=>{
-          alert('ERROR' + resArg);
+          getJsonResonse(data).then(resArg=>{
+            resArg = JSON.parse(resArg)
+          alert('ERROR' + resArg.message);
         })}})
     .catch(error => {
       alert('Some ERROR OCCURRED');
