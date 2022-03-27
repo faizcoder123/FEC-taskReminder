@@ -26,7 +26,7 @@ function Dashboard(props) {
         <Header/>
         <AddTask tasks = {tasks} setTasks = {setTasks}/>
         <Filters/>
-        <Tasks/>
+        <Tasks tasks = {tasks} setTasks = {setTasks}/>
         </div>
         
     );

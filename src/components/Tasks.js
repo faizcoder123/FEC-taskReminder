@@ -3,18 +3,9 @@ import { FaBeer } from 'react-icons/fa';
 import ReactLoading from "react-loading";
 import Task from "./Task"
 
-export const Tasks = () => {
+export const Tasks = ({tasks, setTasks}) => {
 
-    const [tasks, setTasks] = useState([]);
     const [pageLoaded, setPageLoaded] = useState(undefined);
-
-    // const addTask = (task) => {
-    //     if(!task.text ){
-    //         return
-    //     }
-    //     const newTasks = [task, ..tasks]
-    //     setTasks(newTasks)
-    // }
 
     useEffect(() => {
         let h = new Headers();
@@ -43,7 +34,7 @@ export const Tasks = () => {
         ) : (
          <>
              {tasks.map((task, index) => 
-                <Task task = {task} key={index} />
+                <Task task = {task} key={task.index} index={index}/>
              )}
          </>
         )}
