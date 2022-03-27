@@ -27,12 +27,12 @@ export function checkAuth(req, password) {
   );
 }
 
-async function getJsonResonse(response) {
+export async function getJsonResonse(response) {
     try {
       var res = await response.text();
       return res
     } catch (error) {
       alert('Something Went Wrong');
     }
-  }
+}
   

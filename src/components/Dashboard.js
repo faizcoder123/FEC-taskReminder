@@ -8,7 +8,7 @@ import {Filters} from './Filters'
 import {Tasks} from './Tasks'
 
 function Dashboard(props) {
-    const [task, setTask] = useState('')
+    const [tasks, setTasks] = useState([])
 
     const handleSubmit = e => {
       e.preventDefault();
@@ -24,7 +24,7 @@ function Dashboard(props) {
     return (
         <div className="dashBoard">
         <Header/>
-        <AddTask/>
+        <AddTask tasks = {tasks} setTasks = {setTasks}/>
         <Filters/>
         <Tasks/>
         </div>
