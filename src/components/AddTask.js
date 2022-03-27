@@ -14,20 +14,20 @@ export const AddTask = ({tasks, setTasks}) => {
     }
 
     return (
-    <form  style ={{"width": "500px", "position": "relative" , "left":"10px", "top" : "-10px"}} onSubmit={handleSubmit}>
-      <label for="html" class="text-light wow fadeInUp">Add Task:</label>
+    <form  style ={{"width": "500px", "position": "relative" , "left":"10px", "top" : "-10px", "font-family": "Lucida Console"}} onSubmit={handleSubmit}>
+      <label for="html" class="text-dark wow fadeInUp">Add Task:</label>
     <div className="form-group" style ={{"width": "700px" }}>
       <input style ={{"border": "3px solid #5D93E1"}} type="text" className="form-control" id="task" aria-describedby="emailHelp" placeholder="Add Task..." />
     </div>
-    <label for="html" class="text-light wow fadeInUp">Add Description:</label>
+    <label for="html" class="text-dark wow fadeInUp">Add Description:</label>
     <div className="form-group" style ={{"width": "700px"}}>
       <input style ={{"border": "3px solid #5D93E1"}} type="text" className="form-control" id="taskDescription" placeholder="Add Task Description..." />
     </div>
     <div className="form-group" style ={{"width": "700px"}}>
-    <label for="html" class="text-light wow fadeInUp">Add Deadline:</label>
+    <label for="html" class="text-dark wow fadeInUp">Add Deadline:</label>
       <input type="date" className="form-control" id="deadline"  style ={{"border": "3px solid #5D93E1"}}/>
     </div>
-    <button style ={{"top":"-170px", "position": "relative" , "left":"750px", "border": "3px solid #5D93E1"}} type="submit" className="btn btn-info" >Create Task</button>
+    <button style ={{"top":"-170px", "position": "relative" , "left":"750px"}} type="submit" className="btn btn-info" >Create Task</button>
   </form>
     )
 }

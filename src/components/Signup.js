@@ -69,7 +69,7 @@ class Signup extends Component {
       });
   };
     return (      
-   <section class="vh-100">
+   <section class="vh-100"  style={{backgroundImage: `url(${require("../login-image.png")}`,  backgroundRepeat: 'no-repeat'}} >
       <div class="container-fluid" style={{"height": "calc(100% - 73px)"}}>
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-md-9 col-lg-6 col-xl-5">

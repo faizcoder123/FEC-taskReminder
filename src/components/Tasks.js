@@ -32,12 +32,20 @@ export const Tasks = ({tasks, setTasks}) => {
             width = {"50px"}
           />
         ) : (
-         <>
+          <>
+          <h1 class="text-dark" style={{"font-family": "Courier New",}}> Tasks Avilable:</h1>
+          <div style={{
+            "padding-right": "50px",
+            "padding-bottom": "50px",
+            "padding-left": "90px",
+            "padding-top": "40px",
+          }}>
              {tasks.map((task, index) => 
-                <Task task = {task} key={task.index} index={index}/>
+                <Task task = {task} key={task.index} index={index} setTasks={setTasks} tasks={tasks}/>
              )}
-         </>
+          </div>
+          </>
         )}
-      </>
+     </>
     )
 }

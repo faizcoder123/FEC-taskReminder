@@ -8,7 +8,7 @@ import NotFound from "./components/NotFound"
 class TaskReminder extends Component {
   render() {
     return (
-      <div style = {{ backgroundImage: `url(${require("./login-image.png")})`, backgroundRepeat: 'no-repeat'}}>
+      <div style={{"background-color": "lightblue"}}>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Signup/>} />
