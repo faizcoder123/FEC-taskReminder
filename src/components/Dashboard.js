@@ -3,12 +3,12 @@ import { Container } from "react-bootstrap";
 import  { useState, useEffect, useRef } from 'react';
 import NotFound from "./NotFound"
 import {Header} from "./Header"
-import {SearchBar} from "./SearchBar"
+import {AddTask} from "./AddTask"
 import {Filters} from './Filters'
 import {Tasks} from './Tasks'
 
 function Dashboard(props) {
-    const [input, setInput] = useState('')
+    const [task, setTask] = useState('')
 
     const handleSubmit = e => {
       e.preventDefault();
@@ -24,7 +24,7 @@ function Dashboard(props) {
     return (
         <div className="dashBoard">
         <Header/>
-        <SearchBar/>
+        <AddTask/>
         <Filters/>
         <Tasks/>
         </div>

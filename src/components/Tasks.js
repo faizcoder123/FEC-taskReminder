@@ -1,7 +1,7 @@
 import React, { Component , useEffect, useState} from "react";
 import { FaBeer } from 'react-icons/fa';
 import ReactLoading from "react-loading";
-
+import Task from "./Task"
 
 export const Tasks = () => {
 
@@ -32,7 +32,6 @@ export const Tasks = () => {
         })
       },[])
 
-    console.log(tasks)
     return (
         <>
         {!pageLoaded ? (
@@ -42,11 +41,11 @@ export const Tasks = () => {
             width = {"50px"}
           />
         ) : (
-         <div>
-             {tasks.map(task => {
-                 
-             })}
-         </div>
+         <>
+             {tasks.map((task, index) => 
+                <Task task = {task} key={index} />
+             )}
+         </>
         )}
       </>
     )
