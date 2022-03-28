@@ -38,8 +38,6 @@ const Task = ({task, index, setTasks, tasks}) => {
         }))}).catch(error=>{alert(error)})
     }
 
-    console.log(showUpdatePopUp)
-
     const togglePopup = (event) =>{
         event.preventDefault()
         setShowUpdatePopUp(!showUpdatePopUp)
