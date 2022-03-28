@@ -33,9 +33,9 @@ const Task = ({task, index, setTasks, tasks}) => {
         event.preventDefault()
         deleteTaskRequest(task.id).then(()=>{setTasks(tasks.filter((CurrentTask) => { 
             return CurrentTask.id !== task.id
-        }))})
+        }))}).catch(error=>{alert(error)})
       }
-    console.log(tasks)
+
     return (
         <div class="card" style={{"width": "18rem", "background-color": colors[index%5].primaryColor, "border-radius": "10px", "font-family": "Times New Roman", "border": "3px solid #5D93E1",  "display":"inline-block", "margin-left": "10px", "margin-bottom": "10px"}}>
             <div class="card-header" style={{"font-family": "Lucida Console"}}> <b> TASK {index+1}</b></div>

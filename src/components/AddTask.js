@@ -10,7 +10,7 @@ export const AddTask = ({tasks, setTasks}) => {
         "deadline": event.target.elements.deadline.value + "T00:00:00Z",
         "description" : event.target.elements.taskDescription.value,
         "ownerEmail" : sessionStorage.getItem("email")
-      }).then((taskAdded)=>{ setTasks([...tasks, taskAdded])})
+      }).then((taskAdded)=>{ setTasks([...tasks, taskAdded])}).catch(error=>{alert(error)})
     }
 
     return (

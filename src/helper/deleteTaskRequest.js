@@ -16,22 +16,18 @@ export function deleteTaskRequest(id) {
             resolve("deleted");
         }
         else if(data.status === 500){
-            alert('Something Went Wrong while Adding Task');
-            reject("There is an Error!");
+            reject("Something Went Wrong while Deleting Task");
         }
         else if(data.status === 401){
-            alert('Unauthorized');
-            reject("There is an Error!");
+            reject("Unauthorized Error!");
         }
         else{
           getJsonResonse(data).then(resArg=>{
             resArg = JSON.parse(resArg)
-          alert('ERROR' + resArg.message);
-          reject("There is an Error!");
+          reject("There is an Error!" + resArg.message);
         })}})
     .catch(error => {
-      alert('Something Error Occurred Wrong while Deleting Task');
-      reject("There is an Error!");
+      reject("Something Error Occurred Wrong while Deleting Task!");
   });
 })
 return promise;

@@ -13,19 +13,16 @@ function Dashboard(props) {
     const handleSubmit = e => {
       e.preventDefault();
     }
-  
     if(sessionStorage.getItem("AuthenticationState") === null){
-        const errorMessage = "Authentication ERROR";
-        alert(errorMessage)
         return (
-        <NotFound errorMessage={errorMessage}/>
+        <NotFound errorMessage={"Authentication ERROR"}/>
         );
     }
     return (
         <div className="dashBoard">
         <Header/>
         <AddTask tasks = {tasks} setTasks = {setTasks}/>
-        <Filters/>
+        <Filters setTasks = {setTasks}/>
         <Tasks tasks = {tasks} setTasks = {setTasks}/>
         </div>
         

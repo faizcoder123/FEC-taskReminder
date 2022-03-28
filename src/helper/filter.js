@@ -1,25 +1,25 @@
 import {getJsonResonse} from "./AuthenticateUtil"
 
-export function addTaskRequest(requestPayload) {
+export function filterTasksRequest(requestBody) {
+
   const promise = new Promise(function(resolve, reject){
     let h = new Headers();
       h.append('Content-Type', 'application/json');
       h.append('Authorization', 'Basic ' + window.btoa(sessionStorage.getItem("email") + ":" +sessionStorage.getItem("password")));
-      let req = new Request('http://localhost:7000/taskReminder/addTask', {
-          method: 'POST',
-          headers: h,
-          body: JSON.stringify(requestPayload) 
-      });
+        let req = new Request('http://localhost:7000/taskReminder/search', {
+            method: 'POST',
+            headers: h,
+            body: JSON.stringify(requestBody) 
+        });
     fetch(req)
     .then(data=>{
         if(data.ok){
-          alert('Task Added Sucessfully');
-          getJsonResonse(data).then(res=>{
-            resolve(JSON.parse(res));
-          })
+            getJsonResonse(data).then(res=>{
+                resolve(JSON.parse(res));
+              })
         }
         else if(data.status === 500){
-            reject("Something Went Wrong while Adding Task");
+            reject("Something Went Wrong while Filtering Tasks");
         }
         else if(data.status === 401){
             reject("Unauthorized Error!");
@@ -30,7 +30,7 @@ export function addTaskRequest(requestPayload) {
           reject("There is an Error!" + resArg.message);
         })}})
     .catch(error => {
-      reject("Something Error Occurred Wrong while Adding Task!");
+      reject("Something Error Occurred Wrong while Filtering Task");
   });
 })
 return promise;

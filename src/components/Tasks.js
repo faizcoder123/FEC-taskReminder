@@ -11,9 +11,10 @@ export const Tasks = ({tasks, setTasks}) => {
         let h = new Headers();
         h.append('Content-Type', 'application/json');
         h.append('Authorization', 'Basic ' + window.btoa(sessionStorage.getItem("email") + ":" +sessionStorage.getItem("password")));
-        let req = new Request('http://localhost:7000/taskReminder/tasks', {
-            method: 'GET',
-            headers: h
+        let req = new Request('http://localhost:7000/taskReminder/search', {
+            method: 'POST',
+            headers: h,
+            body: JSON.stringify({}) 
         });
         fetch(req)
         .then(response => response.json())
