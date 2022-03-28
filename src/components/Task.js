@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import '../style/task.css';
 import { FaEdit } from 'react-icons/fa';
 import {AiFillDelete } from 'react-icons/ai';
 import {deleteTaskRequest} from "../helper/deleteTaskRequest"
-import {updateTaskRequest} from "../helper/updateTaskRequest"
 import {UpdateTaskPopUp} from './UpdateTaskPopUp';
 
 const Task = ({task, index, setTasks, tasks}) => {
@@ -63,7 +61,7 @@ const Task = ({task, index, setTasks, tasks}) => {
                 </li> 
             </ul>    
             {showUpdatePopUp ? 
-                <UpdateTaskPopUp colour={colors[index%5].primaryColor} closePopup={togglePopup.bind()}/>
+                <UpdateTaskPopUp colour={colors[index%5].primaryColor} closePopup={togglePopup.bind()} task={task} setTasks={setTasks} tasks={tasks} />
                 : null
             }       
         </div>

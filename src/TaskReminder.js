@@ -8,7 +8,6 @@ import NotFound from "./components/NotFound"
 class TaskReminder extends Component {
   render() {
     return (
-      <div style={{"background-color": "lightblue"}}>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Signup/>} />
@@ -17,7 +16,6 @@ class TaskReminder extends Component {
             <Route path="*" element={<NotFound/>}></Route>
           </Routes>
         </BrowserRouter>
-      </div>
     );
   }
 }

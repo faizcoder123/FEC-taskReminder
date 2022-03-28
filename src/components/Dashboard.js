@@ -19,7 +19,7 @@ function Dashboard(props) {
         );
     }
     return (
-        <div className="dashBoard">
+        <div className="dashBoard" style={{"background-color": "lightblue"}}>
         <Header/>
         <AddTask tasks = {tasks} setTasks = {setTasks}/>
         <Filters setTasks = {setTasks}/>
