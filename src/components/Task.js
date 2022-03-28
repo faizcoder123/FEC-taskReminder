@@ -3,8 +3,12 @@ import '../style/task.css';
 import { FaEdit } from 'react-icons/fa';
 import {AiFillDelete } from 'react-icons/ai';
 import {deleteTaskRequest} from "../helper/deleteTaskRequest"
+import {updateTaskRequest} from "../helper/updateTaskRequest"
+import {UpdateTaskPopUp} from './UpdateTaskPopUp';
 
 const Task = ({task, index, setTasks, tasks}) => {
+
+    const [showUpdatePopUp, setShowUpdatePopUp] = useState(false)
 
     const colors = [
         {
@@ -34,8 +38,15 @@ const Task = ({task, index, setTasks, tasks}) => {
         deleteTaskRequest(task.id).then(()=>{setTasks(tasks.filter((CurrentTask) => { 
             return CurrentTask.id !== task.id
         }))}).catch(error=>{alert(error)})
-      }
-    console.log(task)
+    }
+
+    console.log(showUpdatePopUp)
+
+    const togglePopup = (event) =>{
+        event.preventDefault()
+        setShowUpdatePopUp(!showUpdatePopUp)
+       
+    }
 
     return (
         <div class="card" style={{"width": "18rem", "background-color": colors[index%5].primaryColor, "border-radius": "10px", "font-family": "Times New Roman", "border": "3px solid #5D93E1",  "display":"inline-block", "margin-left": "10px", "margin-bottom": "10px"}}>
@@ -47,10 +58,14 @@ const Task = ({task, index, setTasks, tasks}) => {
                 <li class="list-group-item"><b>CreatedAt: </b>{new Date(task.created_time).toDateString()}</li>
                 <li class="list-group-item"><b>Description: </b>{task.description}</li>
                 <li class="list-group-item">
-                <button class="btn btn-primary"style= {{"float":"left"}}>Edit <FaEdit/> </button>
-                <button class="btn btn-danger" style= {{"float":"right"}} onClick={deleteTask}>Delete <AiFillDelete/> </button>   
-                </li>
-            </ul>           
+                    <button class="btn btn-primary"style= {{"float":"left"}} onClick={togglePopup}>Edit <FaEdit/> </button>
+                    <button class="btn btn-danger" style= {{"float":"right"}} onClick={deleteTask}>Delete <AiFillDelete/> </button>  
+                </li> 
+            </ul>    
+            {showUpdatePopUp ? 
+                <UpdateTaskPopUp colour={colors[index%5].primaryColor} closePopup={togglePopup.bind()}/>
+                : null
+            }       
         </div>
     );
 };
