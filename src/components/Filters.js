@@ -15,8 +15,6 @@ export const Filters = ({setTasks}) => {
 
       
     const filterTasks = event => {
-        console.log(searchCriteria)
-        console.log(pagination)
         filterTasksRequest( {
             "searchCriteria": searchCriteria,
             "pagination":pagination
@@ -26,6 +24,7 @@ export const Filters = ({setTasks}) => {
 
     const filterTasksByStatus = event =>{
         var today = new Date();
+        var curDate= today.getFullYear()+'-'+("0" + (today.getMonth() + 1)).slice(-2)+'-'+ ("0" +today.getDate()).slice(-2)
         event.preventDefault()
         let statusType = []
         if(event.target.value == "4"){
@@ -55,14 +54,14 @@ export const Filters = ({setTasks}) => {
             criteria = [{
                 "field": "dead_line",
                 "operator": "<",
-                "values": [today.getFullYear()+'-'+("0" + (today.getMonth() + 1)).slice(-2)+'-'+ ("0" +today.getDate()).slice(-2)]
+                "values": [curDate]
             }]
         }
         else{
             criteria = [...criteria, {
                 "field": "dead_line",
                 "operator": ">",
-                "values": [today.getFullYear()+'-'+("0" + (today.getMonth() + 1)).slice(-2)+'-'+ ("0" +today.getDate()).slice(-2)]
+                "values": [curDate]
             }]
         }
         setSearchCriteria(criteria)

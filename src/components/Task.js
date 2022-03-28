@@ -35,6 +35,7 @@ const Task = ({task, index, setTasks, tasks}) => {
             return CurrentTask.id !== task.id
         }))}).catch(error=>{alert(error)})
       }
+    console.log(task)
 
     return (
         <div class="card" style={{"width": "18rem", "background-color": colors[index%5].primaryColor, "border-radius": "10px", "font-family": "Times New Roman", "border": "3px solid #5D93E1",  "display":"inline-block", "margin-left": "10px", "margin-bottom": "10px"}}>
@@ -42,8 +43,8 @@ const Task = ({task, index, setTasks, tasks}) => {
             <ul class="list-group list-group-flush" >
                 <li class="list-group-item"><b>Subject: </b>{task.subject}</li>
                 <li class="list-group-item"><b>Status: </b>{task.status}</li>
-                <li class="list-group-item"><b>Deadline: </b>{new Date(task.deadline).toDateString()}</li>
-                <li class="list-group-item"><b>CreatedAt: </b>{new Date(task.createdTime).toDateString()}</li>
+                <li class="list-group-item"><b>Deadline: </b>{new Date(task.dead_line).toDateString()}</li>
+                <li class="list-group-item"><b>CreatedAt: </b>{new Date(task.created_time).toDateString()}</li>
                 <li class="list-group-item"><b>Description: </b>{task.description}</li>
                 <li class="list-group-item">
                 <button class="btn btn-primary"style= {{"float":"left"}}>Edit <FaEdit/> </button>
