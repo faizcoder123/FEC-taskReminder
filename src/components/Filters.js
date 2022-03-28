@@ -28,7 +28,7 @@ export const Filters = ({setTasks}) => {
         event.preventDefault()
         let statusType = []
         if(event.target.value == "4"){
-            statusType = ["InProgress"]
+            statusType = ["inprogress"]
         }
         else if(event.target.value == "5"){
             statusType = ["completed"]

@@ -1,6 +1,5 @@
 
- import {updateTaskRequest} from "../helper/updateTaskRequest"
- import  {useEffect} from 'react';
+import {updateTaskRequest} from "../helper/updateTaskRequest"
 export const UpdateTaskPopUp = ({colour, closePopup, task, setTasks, tasks}) => {
 
     const isValueEmpty = (value)=>{
@@ -23,8 +22,9 @@ export const UpdateTaskPopUp = ({colour, closePopup, task, setTasks, tasks}) => 
       updateTaskRequest(task.id, requestPayload).then((updatedTask)=>{
         setTasks(tasks.filter((CurrentTask) => { 
           return CurrentTask.id !== task.id
-       }),  setTasks([...tasks, updatedTask]))
-      
+       }))
+       setTasks((previousTasks) => ([...previousTasks, updatedTask]))
+    
       }
     ).catch(error=>{alert(error)})
 
