@@ -1,0 +1,40 @@
+apiVersion: apps/v1             # API version
+kind: Deployment                # Type of kubernetes resource
+metadata:
+  name: task-reminder-client      # Name of the kubernetes resource
+spec:
+  replicas: 1                   # No of replicas/pods to run
+  selector:                     
+    matchLabels:                # This deployment applies to Pods matching the specified labels
+      app: task-reminder-client  
+  template:                     # Template for creating the Pods in this deployment
+    metadata:
+      labels:                   # Labels that will be applied to all the Pods in this deployment
+        app: task-reminder-client  
+    spec:                       # Spec for the containers that will run inside the Pods
+      containers:
+      - name: task-reminder-client  
+        image: client
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 4001   # Should match the Port that the container listens on
+        resources:
+          limits:
+            cpu: 0.2
+            memory: "512Mi"
+
+---
+apiVersion: v1                  # API version
+kind: Service                   # Type of kubernetes resource
+metadata:
+  name:  task-reminder-client-service        # Name of the kubernetes resource
+spec:
+  type: NodePort                # Exposes the service by opening a port on each node
+  selector:
+    app:  task-reminder-client     # Any Pod matching the label `app=polling-app-client` will be picked up by this service
+  ports:                        # Forward incoming connections on port 80 to the target port 80 in the Pod
+  - name: http
+    protocol: TCP
+    port: 4001
+    targetPort: 4001
